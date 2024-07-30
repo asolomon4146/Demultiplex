@@ -14,13 +14,13 @@
    ![Hist1](https://github.com/asolomon4146/Demultiplex/blob/master/Assignment-the-first/1294_S1_L008_R4_001.png)
     1. Use markdown to insert your 4 histograms here.
     2. Forward read histogram:
-       https://github.com/asolomon4146/Demultiplex/blob/master/Assignment-the-first/1294_S1_L008_R1_001.png
+       !(https://github.com/asolomon4146/Demultiplex/blob/master/Assignment-the-first/1294_S1_L008_R1_001.png)
     4. Index 1 histogram:
-       https://github.com/asolomon4146/Demultiplex/blob/master/Assignment-the-first/1294_S1_L008_R2_001.png
+       !(https://github.com/asolomon4146/Demultiplex/blob/master/Assignment-the-first/1294_S1_L008_R2_001.png)
     5. Index 2 histogram:
-       https://github.com/asolomon4146/Demultiplex/blob/master/Assignment-the-first/1294_S1_L008_R3_001.png
+       !(https://github.com/asolomon4146/Demultiplex/blob/master/Assignment-the-first/1294_S1_L008_R3_001.png)
     7. Reverse read histogram:
-       https://github.com/asolomon4146/Demultiplex/blob/master/Assignment-the-first/1294_S1_L008_R4_001.png
+       !(https://github.com/asolomon4146/Demultiplex/blob/master/Assignment-the-first/1294_S1_L008_R4_001.png)
     
 ## Part 2
 1. Define the problem
