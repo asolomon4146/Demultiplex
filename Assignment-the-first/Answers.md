@@ -11,6 +11,7 @@
 | 1294_S1_L008_R4_001.fastq.gz | Reverse read (Read 2) | 101 | PHRED +33  |
 
 2. Per-base NT distribution
+   ![Hist1](https://github.com/asolomon4146/Demultiplex/blob/master/Assignment-the-first/1294_S1_L008_R4_001.png)
     1. Use markdown to insert your 4 histograms here.
     2. Forward read histogram:
        https://github.com/asolomon4146/Demultiplex/blob/master/Assignment-the-first/1294_S1_L008_R1_001.png
