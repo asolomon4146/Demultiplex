@@ -1,19 +1,20 @@
 # Assignment the First
 
 ## Part 1
-1. Be sure to upload your Python script. Provide a link to it here:
+1. Be sure to upload your Python script. Provide a link to it here: [Part1.py](qual_score_dist.py)
 
 | File name | label | Read length | Phred encoding |
 |---|---|---|---|
-| 1294_S1_L008_R1_001.fastq.gz |  |  |  |
-| 1294_S1_L008_R2_001.fastq.gz |  |  |  |
-| 1294_S1_L008_R3_001.fastq.gz |  |  |  |
-| 1294_S1_L008_R4_001.fastq.gz |  |  |  |
+| 1294_S1_L008_R1_001.fastq.gz | Forward read (read 1) | 101 | PHRED +33 |
+| 1294_S1_L008_R2_001.fastq.gz | Index 1 | 8 | PHRED +33 |
+| 1294_S1_L008_R3_001.fastq.gz | Index 2 | 8 | PHRED +33 |
+| 1294_S1_L008_R4_001.fastq.gz | Reverse read (Read 2) | 101 | PHRED +33  |
 
 2. Per-base NT distribution
     1. Use markdown to insert your 4 histograms here.
-    2. **YOUR ANSWER HERE**
+    2. 
     3. **YOUR ANSWER HERE**
+    4. **YOUR ANSWER HERE**
     
 ## Part 2
 1. Define the problem
