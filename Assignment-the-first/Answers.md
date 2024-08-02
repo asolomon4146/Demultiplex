@@ -14,14 +14,18 @@
 
 1. To find the length of each sequence line:
 		1. `zcat 1294_S1_L008_R1_001.fastq.gz | head -12 | awk 'NR%4 == 2 { print length(), $0}'`
+   
 		2. `zcat 1294_S1_L008_R2_001.fastq.gz | head -12 | awk 'NR%4 == 2 { print length(), $0}'`
+   
 		3. `zcat 1294_S1_L008_R4_001.fastq.gz | head -12 | awk 'NR%4 == 2 { print length(), $0}'`
+   
 		4. `zcat 1294_S1_L008_R4_001.fastq.gz | head -12 | awk 'NR%4 == 2 { print length(), $0}'`
 	2. To find the phred encoding for each file
+
 		1. `zcat 1294_S1_L008_R4_001.fastq.gz | head -8 | awk 'NR%4 == 0 { print($0)}' | grep ".<"`
 
 
-2. Per-base NT distribution
+3. Per-base NT distribution
 i) Use markdown to insert your 4 histograms here.
 Forward read histogram:
        ![Forward read histogram](https://github.com/asolomon4146/Demultiplex/blob/master/Assignment-the-first/1294_S1_L008_R1_001.png)
@@ -44,8 +48,11 @@ ii) Using the median of one million reads from the center of index 1 (to avoid f
  
 ## Part 2
 1. Define the problem:
+   
    Looking through a lane of sequencing data, I would like to determine the level of index hopping that occurred for dual-index paired end Illumina reads. There is a list of 24 different indexes and I need to create a series of files which contain which reads' indexes hopped and with what index they hopped.
-2.  Describe output:
+   
+3.  Describe output:
+   
    This script will create a fastq file containing the record and the index-pairs appended to the header for each index that was not hopped. If it was hopped, then they are placed into a hopped file, and they will also undergo quality score filtering. If a read does not pass a minimum quality score threshold or if an index is not found in the original list of indexes (such as containing an N) then it will be placed into one of two unknown files. There will be 52 total fastq files generated.
 5. Upload your [4 input FASTQ files](../TEST-input_FASTQ) and your [>=6 expected output FASTQ files](../TEST-output_FASTQ).
     
