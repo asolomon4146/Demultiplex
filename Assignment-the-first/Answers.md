@@ -12,8 +12,8 @@
 | 1294_S1_L008_R3_001.fastq.gz | Index 2 | 8 | PHRED +33 |
 | 1294_S1_L008_R4_001.fastq.gz | Reverse read (Read 2) | 101 | PHRED +33  |
 
-1. To find the length of each sequence line:
-		1. `zcat 1294_S1_L008_R1_001.fastq.gz | head -12 | awk 'NR%4 == 2 { print length(), $0}'`
+1. To find the length of each sequence line:`
+		1. zcat 1294_S1_L008_R1_001.fastq.gz | head -12 | awk 'NR%4 == 2 { print length(), $0}'`
    
 		2. `zcat 1294_S1_L008_R2_001.fastq.gz | head -12 | awk 'NR%4 == 2 { print length(), $0}'`
    
