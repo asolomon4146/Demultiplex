@@ -3,6 +3,8 @@
 ## Part 1
 1. Be sure to upload your Python script. Provide a link to it here: [Part1.py](qual_score_dist.py)
 
+[Part1.py filtering for N's and with median](qual_score_dist.py) <-- This script was made retroactively just to perform some data exploration on index 1 to determine a good quality score threshold.
+
 | File name | label | Read length | Phred encoding |
 |---|---|---|---|
 | 1294_S1_L008_R1_001.fastq.gz | Forward read (read 1) | 101 | PHRED +33 |
@@ -10,21 +12,47 @@
 | 1294_S1_L008_R3_001.fastq.gz | Index 2 | 8 | PHRED +33 |
 | 1294_S1_L008_R4_001.fastq.gz | Reverse read (Read 2) | 101 | PHRED +33  |
 
-2. Per-base NT distribution
-    1. Use markdown to insert your 4 histograms here.
-    2. Forward read histogram:
+1. To find the length of each sequence line:`
+		1. zcat 1294_S1_L008_R1_001.fastq.gz | head -12 | awk 'NR%4 == 2 { print length(), $0}'`
+   
+		2. `zcat 1294_S1_L008_R2_001.fastq.gz | head -12 | awk 'NR%4 == 2 { print length(), $0}'`
+   
+		3. `zcat 1294_S1_L008_R4_001.fastq.gz | head -12 | awk 'NR%4 == 2 { print length(), $0}'`
+   
+		4. `zcat 1294_S1_L008_R4_001.fastq.gz | head -12 | awk 'NR%4 == 2 { print length(), $0}'`
+	2. To find the phred encoding for each file
+
+		1. `zcat 1294_S1_L008_R4_001.fastq.gz | head -8 | awk 'NR%4 == 0 { print($0)}' | grep ".<"`
+
+
+3. Per-base NT distribution
+i) Use markdown to insert your 4 histograms here.
+Forward read histogram:
        ![Forward read histogram](https://github.com/asolomon4146/Demultiplex/blob/master/Assignment-the-first/1294_S1_L008_R1_001.png)
-    4. Index 1 histogram:
+Index 1 histogram:
        ![Index 1 histogram](https://github.com/asolomon4146/Demultiplex/blob/master/Assignment-the-first/1294_S1_L008_R2_001.png)
-    5. Index 2 histogram:
+Index 2 histogram:
        ![Index 2 histogram](https://github.com/asolomon4146/Demultiplex/blob/master/Assignment-the-first/1294_S1_L008_R3_001.png)
-    7. Reverse read histogram:
+Reverse read histogram:
        ![Reverse read histogram](https://github.com/asolomon4146/Demultiplex/blob/master/Assignment-the-first/1294_S1_L008_R4_001.png)
-    
+   
+ii) Using the median of one million reads from the center of index 1 (to avoid flow cell edge bias) as a representaiton of the median for all index reads, I would choose a quality score threshold of 27. Taking the median of medians (34) we find that it is similar enough to the mean of means (34.8) after filtering for N's that I chose a quality score threshold that was two standard deviations (3.3 each) below the mean. With a quality score threshold of 27 and a hamming distance no less than 2 for each index, that means that there is a 4*10^-6 chance of an index being mis assigned to the wrong sample. Extrapolated over 320 million reads and 24 samples, that means that after quality filtering, each sample will maintain just 53 mis assigned biological reads.
+
+ iii) To count how many indexes contain undetermined base calls (contains an N) I used the following bash command:
+ 
+1. `zcat /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R2_001.fastq.gz | head -12 | awk 'NR%4 == 2 {print($0)} | grep -c "N"`
+ 
+2. 3,976,613 indexes in file 2 contain undetermined base calls.
+ 
+3. 3,328,051 indexes in file 3 contain undetermined base calls.
+ 
 ## Part 2
 1. Define the problem:
+   
    Looking through a lane of sequencing data, I would like to determine the level of index hopping that occurred for dual-index paired end Illumina reads. There is a list of 24 different indexes and I need to create a series of files which contain which reads' indexes hopped and with what index they hopped.
-3. Describe output:
+   
+3.  Describe output:
+   
    This script will create a fastq file containing the record and the index-pairs appended to the header for each index that was not hopped. If it was hopped, then they are placed into a hopped file, and they will also undergo quality score filtering. If a read does not pass a minimum quality score threshold or if an index is not found in the original list of indexes (such as containing an N) then it will be placed into one of two unknown files. There will be 52 total fastq files generated.
 5. Upload your [4 input FASTQ files](../TEST-input_FASTQ) and your [>=6 expected output FASTQ files](../TEST-output_FASTQ).
     
